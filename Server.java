@@ -5,7 +5,7 @@ import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Temp144 implements ActionListener         // THE SERVER
+public class Server implements ActionListener         // THE SERVER
 {
     ServerSocket ss;
     Socket s;
@@ -17,7 +17,7 @@ public class Temp144 implements ActionListener         // THE SERVER
     JTextField tf;
     JLabel l1, l2;
         
-    public Temp144()
+    public Server()
     {
 	f1 = new JFrame("Secure Log-in");
 	l1 = new JLabel("Password :");
@@ -39,10 +39,6 @@ public class Temp144 implements ActionListener         // THE SERVER
 	l2 = new JLabel("Welcome to the Server");
 	l2.setBounds(150, 50, 300, 50);
 	f2.add(l2);
-	/*b2 = new JButton("Start");
-	b2.setBounds(100, 200, 100, 50);
-	b2.addActionListener(this);
-	f2.add(b2);*/
 	b3 = new JButton("Stop");
 	b3.setBounds(200, 200, 100, 50);
 	b3.addActionListener(this);
@@ -60,7 +56,7 @@ public class Temp144 implements ActionListener         // THE SERVER
 			s = ss.accept();
 			System.out.println("Client Connected");
 			al.add(s);
-			Temp144_Thread tt = new Temp144_Thread(s, al);
+			Server_Thread tt = new Server_Thread(s, al);
 			Thread t = new Thread(tt);
 			t.start();
 		    }
@@ -94,20 +90,18 @@ public class Temp144 implements ActionListener         // THE SERVER
 	    }
     }
 
-    public static void main(String... s)
+    public static void main(String[] args)
     {
-	new Temp144();
+	new Server();
     }
 }
 
-class Temp144_Thread implements Runnable
+class Server_Thread implements Runnable
 {
     Socket s;
     ArrayList al;
-    //ArrayList name = new ArrayList();
-    //String naam;
-    
-    public Temp144_Thread(Socket s, ArrayList al)
+       
+    public Server_Thread(Socket s, ArrayList al)
     {
 	this.s = s;
 	this.al = al;
@@ -123,12 +117,7 @@ class Temp144_Thread implements Runnable
 		    {
 			s1 = din.readUTF();
 			System.out.println(s1);
-			/*if(s1.charAt(0) == '-' && s1.charAt(1) == '>')
-			    {
-				name.add(s1);
-				Temp143_Online(name);
-				naam = name;
-				}*/
+			
 			if(!s1.equals("stop"))
 			    {
 				broadcastMessage(s1);
