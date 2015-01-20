@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 
-public class Temp143 implements ActionListener                          // THE CLIENT
+public class Client implements ActionListener                          // THE CLIENT
 {
     String global;
     Socket s;
@@ -17,11 +17,8 @@ public class Temp143 implements ActionListener                          // THE C
     JLabel l1, l2, l3;
     JTextArea tf2, tf4, tf3;
 
-    Temp143()
+    Client()
     {
-	//Temp143_Online tq = new Temp143_Online(this);
-	//Thread ttt = new Thread(tq);
-	//ttt.start();
 	f1 = new JFrame("Registration");
 	l1 = new JLabel("Name:");
 	l1.setBounds(50, 200, 100, 50);
@@ -82,7 +79,7 @@ public class Temp143 implements ActionListener                          // THE C
 
     public void clientChat() throws IOException
     {
-	Temp143_Thread tt = new Temp143_Thread(din, this);
+	Client_Thread tt = new Client_Thread(din, this);
 	Thread t = new Thread(tt);
 	t.start();
     }
@@ -138,18 +135,18 @@ public class Temp143 implements ActionListener                          // THE C
 
 
 
-    public static void main(String... s)
+    public static void main(String[] args)
     {
-	new Temp143();
+	new Client();
     }
 }
 
 
-class Temp143_Thread implements Runnable
+class Client_Thread implements Runnable
 {
     DataInputStream din;
-    Temp143 t;
-    Temp143_Thread(DataInputStream din, Temp143 t)
+    Client t;
+    Client_Thread(DataInputStream din, Client t)
     {
 	this.din = din;
 	this.t = t;
@@ -175,36 +172,3 @@ class Temp143_Thread implements Runnable
 	while(!ss.equals("stop"));
     }
 }
-
-/*
-class Temp143_Online implements Runnable
-{
-    ArrayList al;
-    Temp143 t;
-    String global = "";
-
-    public void Temp143_Online(ArrayList al)
-    {
-	this.al = al;
-    }
-
-    public Temp143_Online(Temp143 t)
-    {
-	this.t = t;
-    }
-
-    public void run()
-    {
-	while(true)
-	    {
-		Iterator i = al.iterator();
-		while(i.hasNext())
-		    {
-			String st = (String)i.next();
-			global = global + st + "\n";
-		    }
-		t.tf4.setText(global);
-	    }
-    }
-}
-*/
