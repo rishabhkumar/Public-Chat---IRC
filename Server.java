@@ -4,7 +4,12 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+/**
+ * 
+ * @author RISHABH KUMAR
+ * @author DEVANG GAUR
+ *
+ */
 public class Server implements ActionListener         // THE SERVER
 {
     ServerSocket ss;
