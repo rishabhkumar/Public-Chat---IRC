@@ -4,7 +4,11 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-
+/**
+ * 
+ * @author RISHABH KUMAR
+ * @author DEVANG GAUR
+ */
 public class Client implements ActionListener                          // THE CLIENT
 {
     String global;
